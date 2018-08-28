@@ -5,6 +5,6 @@ class Flureedb < Formula
   sha256 "240a285b75a41f5f4bdefc285d666b77033ee2bcb95b6ce74cbf9a3f4b9d80e4"
 
   def install
-    bin.install './flureeDB_transactor'
+    bin.install './flureeDB_transactor.sh'
   end
 end
