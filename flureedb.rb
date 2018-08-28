@@ -5,11 +5,6 @@ class Flureedb < Formula
   sha256 "240a285b75a41f5f4bdefc285d666b77033ee2bcb95b6ce74cbf9a3f4b9d80e4"
 
   def install
-    ENV["GOROOT"] = "#{HOMEBREW_PREFIX}/opt/go/libexec"
-    bin.install './flureeDB.jar'
-  end
-
-  test do
-    system "#{HOMEBREW_PREFIX}/bin/flureeDB_transactor"
+    bin.install './flureeDB_transactor'
   end
 end
