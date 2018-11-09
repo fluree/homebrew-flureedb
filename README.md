@@ -29,6 +29,16 @@ cd /usr/local/Cellar/flureedb/[VERSION]/
 
 Configuration options are listed in our [docs](https://docs.flur.ee/#setting-the-db-configuration-options).
 
+## Uninstallation
+
+```
+brew uninstall fluree/flureedb/flureedb
+```
+
+```
+brew untap fluree/flureedb
+```
+
 ## Resources
 
 * [Fluree site](https://www.flur.ee/)
