@@ -5,7 +5,6 @@ Homebrew Tap for FlureeDB.
 ## Requirements
 
 * [Homebrew](https://brew.sh/)
-* [Java 1.8](https://www.oracle.com/technetwork/java/javase/overview/java8-2100321.html)
 
 ## Installation
 
