@@ -1,12 +1,22 @@
-.PHONY: vagrant-up test clean
+.PHONY: vagrant-up test test-in-vagrant run-tests clean
 
-test: vagrant-up
-	vagrant ssh -c 'brew --version'
-	vagrant ssh -c 'cd vagrant; brew audit --strict --online --formula flureedb.rb'
-	vagrant ssh -c 'cd vagrant; env JAVA_HOME=/usr/local/opt/openjdk brew install --HEAD --formula flureedb.rb'
-	vagrant ssh -c 'brew uninstall flureedb'
-	vagrant ssh -c 'cd vagrant; env JAVA_HOME=/usr/local/opt/openjdk brew install --formula flureedb.rb'
+test-in-vagrant: vagrant-up
+	vagrant ssh -c 'cd vagrant; make run-tests'
 	@echo "Tests successful\nIf you're done with it, you can shut down & reset the vagrant VM with:\nmake clean"
+
+run-tests:
+	brew --version
+	brew audit --strict --online --formula Formula/*
+	env JAVA_HOME=/usr/local/opt/openjdk brew install --HEAD --formula Formula/flureedb.rb
+	brew uninstall flureedb
+	env JAVA_HOME=/usr/local/opt/openjdk brew install --formula Formula/flureedb.rb
+
+test:
+ifdef GITHUB_ACTIONS
+	$(MAKE) run-tests
+else
+	$(MAKE) test-in-vagrant
+endif
 
 vagrant-up: Vagrantfile
 	./ensure-vagrant.sh

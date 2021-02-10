@@ -1,0 +1,15 @@
+name: CI/CD
+on:
+  push:
+  schedule:
+    - cron: 13 0 * * *
+
+jobs:
+  test:
+    name: Run Tests
+    runs-on: macos-latest
+    steps:
+      - name: Setup Homebrew
+        uses: Homebrew/actions/setup-homebrew@master
+      - name: Run formula tests
+        run: make test
