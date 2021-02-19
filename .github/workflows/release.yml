@@ -4,6 +4,12 @@ on:
     types: [fluree-ledger-release]
 
 jobs:
+  debug:
+    runs-on: macos-latest
+    steps:
+      - run: echo "$GITHUB_CONTEXT"
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
   release:
     runs-on: macos-latest
     steps:
