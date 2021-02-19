@@ -1,0 +1,11 @@
+name: Update on ledger release
+on:
+  repository_dispatch:
+    types: [fluree-ledger-release]
+
+jobs:
+  release:
+    runs-on: macos-latest
+    steps:
+      - name: Create specific version for release
+        run: printenv
