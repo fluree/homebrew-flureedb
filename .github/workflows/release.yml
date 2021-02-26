@@ -13,5 +13,35 @@ jobs:
   release:
     runs-on: macos-latest
     steps:
-      - name: Create specific version for release
-        run: printenv
+      - uses: actions/checkout@v2
+      - name: Configure git
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+      - id: get-version
+        run: |
+          version=$(echo ${{ github.client_payload.release.tag_name }} | cut -c 2-)
+          echo "::set-output name=version::$version"
+      - id: get-class-name
+        run: |
+          class=$(./version-to-class.sh ${{ steps.get-version.outputs.version }})
+          echo "::set-output name=class::$class"
+      - name: Create versioned formula for release
+        if: ${{ github.client_payload.action == "published" && startsWith(github.client_payload.release.tag_name, "v") }}
+        env:
+          FLUREE_VERSION: ${{ steps.get-version.outputs.version }}
+          FLUREE_HOMEBREW_CLASS: ${{ steps.get-class-name.outputs.class }}
+        run: |
+          sed "s/class Flureedb/class ${FLUREE_HOMEBREW_CLASS}/" Formula/flureedb.rb > Formula/flureedb@${FLUREE_VERSION}.rb
+          git add .
+          git commit -m "Release formula for v${FLUREE_VERSION}"
+          git push
+      - name: Delete versioned formula
+        if: ${{ github.client_payload.action == "deleted" || github.client_payload.action == "unpublished" }}
+        env:
+          FLUREE_VERSION: ${{ steps.get-version.outputs.version }}
+        run: |
+          rm Formula/flureedb@${FLUREE_VERSION}.rb
+          git rm Formula/flureedb@${FLUREE_VERSION}.rb
+          git commit -m "Delete formula for v${FLUREE_VERSION}"
+          git push
