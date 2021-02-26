@@ -27,7 +27,7 @@ jobs:
           class=$(./version-to-class.sh ${{ steps.get-version.outputs.version }})
           echo "::set-output name=class::$class"
       - name: Create versioned formula for release
-        if: ${{ github.client_payload.action == "published" && startsWith(github.client_payload.release.tag_name, "v") }}
+        if: ${{ github.client_payload.action == 'published' && startsWith(github.client_payload.release.tag_name, 'v') }}
         env:
           FLUREE_VERSION: ${{ steps.get-version.outputs.version }}
           FLUREE_HOMEBREW_CLASS: ${{ steps.get-class-name.outputs.class }}
@@ -37,7 +37,7 @@ jobs:
           git commit -m "Release formula for v${FLUREE_VERSION}"
           git push
       - name: Delete versioned formula
-        if: ${{ github.client_payload.action == "deleted" || github.client_payload.action == "unpublished" }}
+        if: ${{ github.client_payload.action == 'deleted' || github.client_payload.action == 'unpublished' }}
         env:
           FLUREE_VERSION: ${{ steps.get-version.outputs.version }}
         run: |
