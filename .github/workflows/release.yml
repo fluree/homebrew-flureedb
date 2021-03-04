@@ -33,6 +33,8 @@ jobs:
           FLUREE_HOMEBREW_CLASS: ${{ steps.get-class-name.outputs.class }}
         run: |
           sed "s/class Flureedb/class ${FLUREE_HOMEBREW_CLASS}/" Formula/flureedb.rb > Formula/flureedb@${FLUREE_VERSION}.rb
+          sed "s#url \"(.+)/fluree-.*\.zip\"#\1/fluree-${FLUREE_VERSION}.zip#"
+          
           git add .
           git commit -m "Release formula for v${FLUREE_VERSION}"
           git push
