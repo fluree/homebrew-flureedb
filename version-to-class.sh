@@ -8,7 +8,7 @@ mkdir -p .tmp
 
 echo "class Flureedb < Formula; end" > .tmp/flureedb@${version}.rb
 
-class=$(brew audit .tmp/flureedb@${version}.rb 2>&1 | grep 'Expected to find' | awk '{print $4 " " $5}' | cut -d, -f1)
+class=$(brew audit .tmp/flureedb@${version}.rb 2>&1 | grep 'Expected to find' | awk '{print $5}' | cut -d, -f1)
 
 echo $class
 
