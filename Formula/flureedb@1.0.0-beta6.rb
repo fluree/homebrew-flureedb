@@ -2,11 +2,11 @@
 # frozen_string_literal: true
 
 # Homebrew formula for Fluree (yes this comment is dumb; thank rubocop)
-class class FlureedbAT100Beta6 < Formula
+class FlureedbAT100Beta6 < Formula
   desc "Graph database with a blockchain backbone"
   homepage "https://www.flur.ee"
-  url "https://fluree-releases-public.s3.amazonaws.com/fluree-1.0.0-beta3.zip"
-  sha256 "9a0d157b0be666fd9db58c4f2f5974298e4a559cdc151ffe68476f55aef5f1c3"
+  url "https://fluree-releases-public.s3.amazonaws.com/fluree-1.0.0-beta6.zip"
+  sha256 "5926c67475422da0b9d82052452e0cc845c078030fbe71775d1fa9811dd7d42f"
   license "AGPL-3.0-only"
 
   head do

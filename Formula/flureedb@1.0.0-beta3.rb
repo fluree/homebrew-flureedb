@@ -2,7 +2,7 @@
 # frozen_string_literal: true
 
 # Homebrew formula for Fluree (yes this comment is dumb; thank rubocop)
-class class FlureedbAT100Beta3 < Formula
+class FlureedbAT100Beta3 < Formula
   desc "Graph database with a blockchain backbone"
   homepage "https://www.flur.ee"
   url "https://fluree-releases-public.s3.amazonaws.com/fluree-1.0.0-beta3.zip"
