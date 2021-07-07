@@ -5,8 +5,8 @@
 class Flureedb < Formula
   desc "Graph database with a blockchain backbone"
   homepage "https://www.flur.ee"
-  url "https://fluree-releases-public.s3.amazonaws.com/fluree-1.0.0-beta3.zip"
-  sha256 "9a0d157b0be666fd9db58c4f2f5974298e4a559cdc151ffe68476f55aef5f1c3"
+  url "https://fluree-releases-public.s3.amazonaws.com/fluree-1.0.0-beta12.zip"
+  sha256 "d9df5a257081f8e9ca5a8109397ad4e69d79bb856f759dbe12f1b1556848ce44"
   license "AGPL-3.0-only"
 
   head do
