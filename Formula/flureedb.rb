@@ -5,8 +5,8 @@
 class Flureedb < Formula
   desc "Graph database with a blockchain backbone"
   homepage "https://www.flur.ee"
-  url "https://fluree-releases-public.s3.amazonaws.com/fluree-1.0.0-beta13.zip"
-  sha256 "42b750ae68a895eceb8356f90d6466691d29b217f9d8288d381c769f6ce8e3e1"
+  url "https://fluree-releases-public.s3.amazonaws.com/fluree-1.0.0-beta14.zip"
+  sha256 "07b95d79847ca74db240f16733f1abd673fc05a518d943a10c623dd23bb2fadb"
   license "AGPL-3.0-only"
 
   head do
@@ -22,7 +22,7 @@ class Flureedb < Formula
     inreplace file do |p|
       p.gsub!(/(?:#\s*)?fdb-group-config-path=.*/, "fdb-group-config-path=#{etc}")
       p.gsub!(/(?:#\s*)?fdb-storage-file-root=.*/, "fdb-storage-file-root=#{var}/lib/fluree")
-      p.gsub!(/(?:#\s*)?fdb-group-log-directory=.*/, "fdb-group-log-directory=#{var}/lib/fluree")
+      p.gsub!(/(?:#\s*)?fdb-group-log-directory=.*/, "fdb-group-log-directory=#{var}/lib/fluree/group")
     end
   end
 
