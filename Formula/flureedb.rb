@@ -14,8 +14,6 @@ class Flureedb < Formula
     depends_on "clojure" => :build
   end
 
-  bottle :unneeded
-
   depends_on "openjdk"
 
   def edit_config(file)
