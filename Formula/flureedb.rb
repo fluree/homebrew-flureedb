@@ -78,6 +78,10 @@ class Flureedb < Formula
           <dict>
             <key>JAVA_HOME</key>
             <string>#{Formula["openjdk"].opt_prefix}</string>
+            <key>SYSTEM_CONFIG_DIR</key>
+            <string>#{etc}</string>
+            <key>SYSTEM_JAR_DIR</key>
+            <string>#{share/"java"}</string>
           </dict>
           <key>StandardErrorPath</key>
           <string>#{var}/log/fluree.error.log</string>
