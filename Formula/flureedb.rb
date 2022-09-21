@@ -12,6 +12,7 @@ class Flureedb < Formula
   head do
     url "https://github.com/fluree/ledger.git", branch: "main"
     depends_on "clojure" => :build
+    depends_on "npm" => :build
   end
 
   depends_on "openjdk"
@@ -25,7 +26,11 @@ class Flureedb < Formula
   end
 
   def install_head
+    require "language/node"
     edit_config "resources/fluree_sample.properties"
+    # have to do npm install first like this cuz homebrew
+    # see: https://docs.brew.sh/Node-for-Formula-Authors
+    system "npm", "install", *Language::Node.local_npm_install_args
     system "make", "install", "DESTDIR=#{prefix}"
   end
 
@@ -73,6 +78,10 @@ class Flureedb < Formula
           <dict>
             <key>JAVA_HOME</key>
             <string>#{Formula["openjdk"].opt_prefix}</string>
+            <key>SYSTEM_CONFIG_DIR</key>
+            <string>#{etc}</string>
+            <key>SYSTEM_JAR_DIR</key>
+            <string>#{share/"java"}</string>
           </dict>
           <key>StandardErrorPath</key>
           <string>#{var}/log/fluree.error.log</string>
