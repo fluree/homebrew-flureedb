@@ -58,38 +58,15 @@ class Flureedb < Formula
     "FlureeDB's web admin UI defaults to port 8090."
   end
 
-  plist_options manual: "#{HOMEBREW_PREFIX}/bin/fluree"
-
-  def plist
-    <<~EOS
-      <?xml version="1.0" encoding="UTF-8"?>
-      <!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-      <plist version="1.0">
-        <dict>
-          <key>Label</key>
-          <string>#{plist_name}</string>
-          <key>ProgramArguments</key>
-          <array>
-            <string>#{opt_bin}/fluree</string>
-          </array>
-          <key>RunAtLoad</key>
-          <true />
-          <key>EnvironmentVariables</key>
-          <dict>
-            <key>JAVA_HOME</key>
-            <string>#{Formula["openjdk"].opt_prefix}</string>
-            <key>SYSTEM_CONFIG_DIR</key>
-            <string>#{etc}</string>
-            <key>SYSTEM_JAR_DIR</key>
-            <string>#{share/"java"}</string>
-          </dict>
-          <key>StandardErrorPath</key>
-          <string>#{var}/log/fluree.error.log</string>
-          <key>StandardOutPath</key>
-          <string>#{var}/log/fluree.log</string>
-        </dict>
-      </plist>
-    EOS
+  service do
+    run [opt_bin/"fluree"]
+    log_path var/"log/fluree.log"
+    environment_variables \
+      PATH:              std_service_path_env,
+      JAVA_HOME:         Formula["openjdk"].opt_prefix,
+      SYSTEM_CONFIG_DIR: etc,
+      SYSTEM_JAR_DIR:    opt_share/"java"
+    error_log_path var/"log/fluree.error.log"
   end
 
   test do
