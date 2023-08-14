@@ -74,7 +74,7 @@ class Flureedb < Formula
                  shell_output("#{bin}/fluree test")
 
     system "brew", "services", "start", "flureedb"
-    sleep 3
+    sleep 5
 
     assert_match(/^{"ready":true/, shell_output("curl http://localhost:8090/fdb/health"))
 
