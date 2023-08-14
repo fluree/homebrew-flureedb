@@ -71,7 +71,7 @@ class Flureedb < Formula
 
   test do
     puts "fluree test output:"
-    system({"SYSTEM_JAR_DIR" => libexec}, "#{bin}/fluree test")
+    system({"SYSTEM_JAR_DIR" => libexec.to_s}, "#{bin}/fluree test")
     puts "done"
 
     assert_equal "Fluree successfully installed and ready to run",
