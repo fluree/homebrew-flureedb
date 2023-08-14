@@ -7,11 +7,11 @@ test-in-vagrant: vagrant-up
 run-tests:
 	brew --version
 	brew uninstall flureedb || true
-	HOMEBREW_NO_INSTALL_FROM_API=1 JAVA_HOME=/usr/local/opt/openjdk brew install --formula Formula/flureedb.rb
+	env JAVA_HOME=/usr/local/opt/openjdk brew install --formula Formula/flureedb.rb
 	brew audit --strict --online fluree/flureedb/flureedb
 	brew test flureedb
 	brew uninstall flureedb
-	HOMEBREW_NO_INSTALL_FROM_API=1 env JAVA_HOME=/usr/local/opt/openjdk brew install --HEAD --formula Formula/flureedb.rb
+	env JAVA_HOME=/usr/local/opt/openjdk brew install --HEAD --formula Formula/flureedb.rb
 	brew test flureedb
 	brew uninstall flureedb
 
