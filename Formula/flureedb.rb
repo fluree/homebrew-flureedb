@@ -70,6 +70,10 @@ class Flureedb < Formula
   end
 
   test do
+    puts "fluree test output:"
+    system("#{bin}/fluree test")
+    puts "done"
+
     assert_equal "Fluree successfully installed and ready to run",
                  shell_output("#{bin}/fluree test")
 
