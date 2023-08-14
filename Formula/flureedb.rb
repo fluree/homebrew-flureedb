@@ -70,12 +70,8 @@ class Flureedb < Formula
   end
 
   test do
-    puts "fluree test output:"
-    Kernel.system({"SYSTEM_JAR_DIR" => libexec.to_s}, "#{bin}/fluree test")
-    puts "done"
-
     assert_equal "Fluree successfully installed and ready to run",
-                 shell_output("#{bin}/fluree test")
+                 shell_output("env SYSTEM_JAR_DIR=#{libexec.to_s} #{bin}/fluree test")
 
     system "brew", "services", "start", "flureedb"
 
