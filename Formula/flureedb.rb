@@ -76,7 +76,7 @@ class Flureedb < Formula
     system "brew", "services", "start", "flureedb"
 
     100.times do |n|
-      if `curl -sf -o /dev/null http://localhost:8090/fdb/health`
+      if system('curl -sf -o /dev/null http://localhost:8090/fdb/health')
         assert_match(/^{"ready":true/, shell_output("curl http://localhost:8090/fdb/health"))
         break
       else
