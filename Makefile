@@ -6,10 +6,14 @@ test-in-vagrant: vagrant-up
 
 run-tests:
 	brew --version
-	brew audit --strict --online --formula Formula/*
-	env JAVA_HOME=/usr/local/opt/openjdk brew install --HEAD --formula Formula/flureedb.rb
+	brew uninstall flureedb || true
+	JAVA_HOME=/usr/local/opt/openjdk brew install --formula Formula/flureedb.rb
+	brew audit --strict --online fluree/flureedb/flureedb
+	brew test flureedb
 	brew uninstall flureedb
-	env JAVA_HOME=/usr/local/opt/openjdk brew install --formula Formula/flureedb.rb
+	env JAVA_HOME=/usr/local/opt/openjdk brew install --HEAD --formula Formula/flureedb.rb
+	brew test flureedb
+	brew uninstall flureedb
 
 test:
 ifdef GITHUB_ACTIONS
