@@ -36,7 +36,7 @@ class Flureedb < Formula
 
   def install_release
     bin.install "fluree_start.sh" => "fluree"
-    (share/"java").install "fluree-ledger.standalone.jar"
+    libexec.install "fluree-ledger.standalone.jar"
 
     edit_config "fluree_sample.properties"
     etc.install "fluree_sample.properties" => "fluree.properties"
@@ -65,7 +65,7 @@ class Flureedb < Formula
       PATH:              std_service_path_env,
       JAVA_HOME:         Formula["openjdk"].opt_prefix,
       SYSTEM_CONFIG_DIR: etc,
-      SYSTEM_JAR_DIR:    opt_share/"java"
+      SYSTEM_JAR_DIR:    libexec
     error_log_path var/"log/fluree.error.log"
   end
 
