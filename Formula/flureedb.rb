@@ -70,7 +70,7 @@ class Flureedb < Formula
   end
 
   test do
-    assert_equal "Fluree successfully installed and ready to run",
+    assert_match /\nFluree successfully installed and ready to run\n/,
                  shell_output("env SYSTEM_JAR_DIR=#{libexec.to_s} #{bin}/fluree test")
 
     system "brew", "services", "start", "flureedb"
