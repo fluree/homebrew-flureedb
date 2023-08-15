@@ -11,9 +11,10 @@ run-tests:
 	brew audit --strict --online fluree/flureedb/flureedb
 	brew test flureedb
 	brew uninstall flureedb
-	env JAVA_HOME=/usr/local/opt/openjdk brew install --HEAD --formula Formula/flureedb.rb
-	brew test flureedb
-	brew uninstall flureedb
+	# head installs are disabled for now
+	# env JAVA_HOME=/usr/local/opt/openjdk brew install --HEAD --formula Formula/flureedb.rb
+	# brew test flureedb
+	# brew uninstall flureedb
 
 test:
 ifdef GITHUB_ACTIONS

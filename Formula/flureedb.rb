@@ -9,11 +9,12 @@ class Flureedb < Formula
   sha256 "b6815276151705a5dfdb8a2cd76b95ec1836f930274e5e55187bc35f7147c9a4"
   license "AGPL-3.0-only"
 
-  head do
-    url "https://github.com/fluree/ledger.git", branch: "maintenance/v2"
-    depends_on "clojure" => :build
-    depends_on "npm" => :build
-  end
+  # main branch isn't useful in ledger repo & brew audit errors if it's anything else (huh?)
+  # head do
+  #   url "https://github.com/fluree/ledger.git", branch: "main"
+  #   depends_on "clojure" => :build
+  #   depends_on "npm" => :build
+  # end
 
   depends_on "openjdk"
 
