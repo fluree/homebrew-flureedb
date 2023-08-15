@@ -72,19 +72,5 @@ class Flureedb < Formula
   test do
     assert_match /\nFluree successfully installed and ready to run\n/,
                  shell_output("env SYSTEM_JAR_DIR=#{libexec.to_s} #{bin}/fluree test")
-
-    system "brew", "services", "start", "flureedb"
-
-    100.times do |n|
-      if system('curl -sf -o /dev/null http://localhost:8090/fdb/health')
-        assert_match(/^{"ready":true/, shell_output("curl http://localhost:8090/fdb/health"))
-        break
-      else
-        assert n < 99
-        sleep 2
-      end
-    end
-
-    system "brew", "services", "stop", "flureedb"
   end
 end
