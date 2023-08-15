@@ -10,7 +10,7 @@ class Flureedb < Formula
   license "AGPL-3.0-only"
 
   head do
-    url "https://github.com/fluree/ledger.git", branch: "main"
+    url "https://github.com/fluree/ledger.git", branch: "maintenance/v2"
     depends_on "clojure" => :build
     depends_on "npm" => :build
   end
